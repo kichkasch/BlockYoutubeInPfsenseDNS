@@ -13,6 +13,18 @@ might be your solution.
 an API key as documented on that page (https://pfrest.org/AUTHENTICATION_AND_AUTHORIZATION/#api-key-authentication)
 - You need to provide your details (IP of pfsense and API key) in the .env file
 
+### Actual Installation
+
+Tbd
+
+### Additional instructions
+
+For making this work, you have to make sure, that the pfsense firewall is used as DNS resolver 
+(by your smart tv and maybe other relevant devices). Make sure, that
+
+1) Your DHCP server includes the IP of the firewall as DNS resolever, and
+2) (if paranoid) block outgoing traffic to other DNS servers (PORT 53 TCP /UDP) on your firewall.
+
 ## Technologies
 
 - Python
