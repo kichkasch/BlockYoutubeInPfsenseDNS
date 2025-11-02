@@ -8,7 +8,8 @@ might be your solution.
 
 ### Prerequesites:
 
-- You need a firewall running pfsense (working successful with CE 2.8.1)
+- You need a firewall running pfsense (working successful with CE 2.8.1); the out of the box DNS resolver of 
+pfsense includes a functionality "Domain Overrides", which we will take advantage of.
 - On that firewall you have API access enabled using the package pfrest (https://pfrest.org/); export
 an API key as documented on that page (https://pfrest.org/AUTHENTICATION_AND_AUTHORIZATION/#api-key-authentication)
 - You need to provide your details (IP of pfsense and API key) in the .env file
