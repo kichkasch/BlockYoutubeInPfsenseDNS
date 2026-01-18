@@ -4,19 +4,17 @@
 # 2025-11-02
 
 import requests
-import os
 from environs import Env
 
 env = Env()
 env.read_env() # read .env file, if it exists
-api_key = os.getenv("API_KEY")
-host = os.getenv("IP_FIREWALL")
-fake_dns_ip = os.getenv("FAKE_DNS_IP")
+api_key = env("API_KEY")
+host = env("IP_FIREWALL")
+fake_dns_ip = env("FAKE_DNS_IP")
+domains_to_block = env.list("DOMAINS")
 
 if not api_key or not host or not fake_dns_ip:
     exit("Configuration in .env not provided. See readme for details")
-
-domains_to_block = ["youtube.com","youtube.de"]
 
 def getDomainOverrides():
     endpoint = "/api/v2/services/dns_resolver/domain_overrides"
@@ -63,12 +61,18 @@ def delDomainOverride(domain, multiple=False):
         entrySucess = delDomainOverrideEntry(domain, overrides)
     return True
 
-if __name__ == '__main__':
-    print (getDomainOverrides())
-    #for i in domains_to_block:
-    #    print (addDomainOverride(i))
-    print (getDomainOverrides())
+def addAllDomainOverrides():
+    for i in domains_to_block:
+        print (addDomainOverride(i))
+
+def delAllDomainOverrides():
     for i in domains_to_block:
         print (delDomainOverride(i, True))
+
+if __name__ == '__main__':
+    print (getDomainOverrides())
+    #addAllDomainOverrides()
+    print (getDomainOverrides())
+    delAllDomainOverrides()
     print (getDomainOverrides())
 
