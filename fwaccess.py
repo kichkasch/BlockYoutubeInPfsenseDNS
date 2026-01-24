@@ -16,6 +16,13 @@ domains_to_block = env.list("DOMAINS")
 if not api_key or not host or not fake_dns_ip:
     exit("Configuration in .env not provided. See readme for details")
 
+def applyDnsResolverChanges():
+    endpoint = "/api/v2/services/dns_resolver/apply"
+    method = "POST"
+    url = "https://" + host + endpoint
+    response = requests.request(method, url, headers={"x-api-key": api_key}, verify=False)
+    return response.json()
+
 def getDomainOverrides():
     endpoint = "/api/v2/services/dns_resolver/domain_overrides"
     method = "GET"
@@ -64,10 +71,12 @@ def delDomainOverride(domain, multiple=False):
 def addAllDomainOverrides():
     for i in domains_to_block:
         print (addDomainOverride(i))
+    applyDnsResolverChanges()
 
 def delAllDomainOverrides():
     for i in domains_to_block:
         print (delDomainOverride(i, True))
+    applyDnsResolverChanges()
 
 if __name__ == '__main__':
     print (getDomainOverrides())

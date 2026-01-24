@@ -16,7 +16,36 @@ an API key as documented on that page (https://pfrest.org/AUTHENTICATION_AND_AUT
 
 ### Actual Installation
 
-Tbd
+On server (tested on Raspberry 5 running Pi OS) to run the python code:
+1) Install Python Venv (e.g. apt-get install python3-venv)
+2) Create application directory and change working directory there
+> mkdir /opt/youtubeblock & cd /opt/youtubeblock
+
+3) Create virtual Python environment:
+> python -m venv .venv
+
+3) Activate the environment
+> . .venv/bin/activate
+
+4) Install required python packages through pip
+> pip install waitress # application server to run the Flask based web app, https://flask.palletsprojects.com/en/stable/deploying/waitress/  
+> pip install flask  
+> pip install requests  
+> pip install environs
+
+5) Install the app itself
+> wget https://github.com/kichkasch/BlockYoutubeInPfsenseDNS/archive/refs/heads/master.zip  
+> unzip master.zip
+
+6) Run the app  
+Change into directory:  
+> cd /opt/youtubeblock/BlockYoutubeInPfsenseDNS-master
+
+rename .env.default to .env  
+> mv .env.default .env   
+
+and edit this file to apply your settings.  
+
 
 ### Additional instructions
 
