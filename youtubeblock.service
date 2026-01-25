@@ -1,0 +1,16 @@
+# derived from sample at https://gist.github.com/dunkelstern/5bfe7414fc0b7e8a9f6e1c4c78fd2543
+[Unit]
+Description=Youtube Blocker
+After=network.target
+
+[Service]
+type=exec
+#Environment=EXAMPLE_ENV=bla
+WorkingDirectory=/opt/youtubeblock/BlockYoutubeInPfsenseDNS-master
+ExecStart=/opt/youtubeblock/.venv/bin/waitress-serve app:app
+Restart=always
+#User=user
+#Group=user
+
+[Install]
+WantedBy=multi-user.target
