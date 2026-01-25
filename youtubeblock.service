@@ -4,8 +4,6 @@ Description=Youtube Blocker
 After=network.target
 
 [Service]
-type=exec
-#Environment=EXAMPLE_ENV=bla
 WorkingDirectory=/opt/youtubeblock/BlockYoutubeInPfsenseDNS-master
 ExecStart=/opt/youtubeblock/.venv/bin/waitress-serve app:app
 Restart=always
